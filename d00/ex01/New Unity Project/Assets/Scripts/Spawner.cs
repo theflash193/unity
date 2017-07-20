@@ -1,35 +1,1 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Spawner : MonoBehaviour {
-	// un objet du type que l'on souhait faire spawn
-	// Use this for initialization
-	public int type;
-	public GameObject a;
-	public GameObject s;
-	public GameObject d;
-
-	void Start () {
-		Vector3 old = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0);
-		switch (type) {
-		case 1:
-			GameObject.Instantiate (a, old, Quaternion.identity);
-			break ;
-		case 2:
-			GameObject.Instantiate (s, old, Quaternion.identity);
-			break ;
-		case 3:
-			GameObject.Instantiate (d, old, Quaternion.identity);
-			break;
-		default :
-			break;
-		}
-		Debug.Log (gameObject.transform.localPosition);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-}
+﻿using System.Collections; using System.Collections.Generic; using UnityEngine;  public class Spawner : MonoBehaviour { 	float spawnTime = 60f; 	float timer = 0; 	int[] SerieNote = new int[3] {1, 2, 3}; 	int count = 0; 	public GameObject a; 	public GameObject s; 	public GameObject d;  	void Start () { 	}  	// Update is called once per frame 	void Update () { 		if (timer >= spawnTime) { 			timer = 0; 			if (SerieNote[count] == 1) { 				Instantiate (a, new Vector3 (-2.22f, 3, 0), Quaternion.identity); 			} else if (SerieNote[count] == 2) { 				Instantiate (s, new Vector3 (0, 3, 0), Quaternion.identity); 			} else { 				Instantiate (d, new Vector3 (2.22f, 3, 0), Quaternion.identity); 			} 			if (count == 2) { 				count = 0; 			} else { 				count += 1; 			} 		} 		timer += 1; 	}  }  
